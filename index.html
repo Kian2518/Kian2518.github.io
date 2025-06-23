@@ -12,7 +12,8 @@
       font-family: 'Outfit', sans-serif;
     }
     body {
-      background: #f9f9f9;
+   background: linear-gradient(to bottom, #eaf6ff, #ffffff);
+
       color: #333;
     }
     header {
@@ -25,22 +26,29 @@
     header h1 {
       font-size: 2.5rem;
     }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      background: #fff;
-      padding: 1rem;
-      border-bottom: 1px solid #ddd;
-    }
-    nav a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 600;
-    }
-    nav a:hover {
-      color: #0077cc;
-    }
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  background: #fff;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+nav a {
+  text-decoration: none;
+  color: #006699;
+  font-weight: 600;
+  transition: 0.3s;
+}
+nav a:hover {
+  color: #0099cc;
+  transform: scale(1.05);
+}
+
     section {
       padding: 3rem 2rem;
       max-width: 900px;
@@ -51,13 +59,19 @@
       margin-bottom: 1.5rem;
       text-align: center;
     }
-    .card {
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      padding: 2rem;
-      margin-bottom: 2rem;
-    }
+  .card {
+  background: linear-gradient(to bottom, #ffffff, #f2f8ff);
+  border-radius: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+
+
     footer {
       background: #151515;
       color: white;
@@ -68,10 +82,12 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>Kian's Kingdom Hub</h1>
-    <p>Bringing the world closer to Yahuwah through music, teaching, and truth</p>
-  </header>
+  <header style="background: url('https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;">
+  <div style="background: rgba(0, 0, 0, 0.6); padding: 3rem 2rem;">
+    <h1 style="font-size: 3rem; color: #fff;">Kian's Kingdom Hub</h1>
+    <p style="color: #ccc; font-size: 1.2rem; max-width: 600px; margin: 1rem auto;">Bringing the world closer to Yahuwah through music, teaching, and truth</p>
+  </div>
+</header>
 
   <nav>
     <a href="#music">Music</a>
