@@ -15,6 +15,24 @@
       background: linear-gradient(to bottom, #eaf6ff, #ffffff);
       color: #333;
     }
+    header {
+      background: url('https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    }
+    header > div {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3rem;
+      color: #fff;
+    }
+    header p {
+      color: #ccc;
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 1rem auto 0;
+    }
     nav {
       display: flex;
       justify-content: center;
@@ -26,6 +44,7 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      align-items: center;
     }
     nav a {
       text-decoration: none;
@@ -36,6 +55,12 @@
     nav a:hover {
       color: #0099cc;
       transform: scale(1.05);
+    }
+    nav select {
+      padding: 0.3rem 0.5rem;
+      font-weight: 600;
+      border-radius: 4px;
+      border: 1px solid #ccc;
     }
     section {
       padding: 3rem 2rem;
@@ -68,16 +93,15 @@
   </style>
 </head>
 <body>
-  <header style="background: url('https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;">
-    <div style="background: rgba(0, 0, 0, 0.6); padding: 3rem 2rem;">
-      <h1 style="font-size: 3rem; color: #fff;">Kian's Kingdom Hub</h1>
-      <p style="color: #ccc; font-size: 1.2rem; max-width: 600px; margin: 1rem auto;">
-        Bringing the world closer to Yahuwah through music, teaching, and truth
-      </p>
+
+  <header>
+    <div>
+      <h1>Kian's Kingdom Hub</h1>
+      <p>Bringing the world closer to Yahuwah through music, teaching, and truth</p>
     </div>
   </header>
 
-  <nav style="display: flex; justify-content: center; gap: 2rem; background: #fff; padding: 1rem; border-bottom: 1px solid #ddd; align-items: center;">
+  <nav>
     <div style="flex-grow: 1; display: flex; justify-content: center; gap: 2rem;">
       <a href="#music">Music</a>
       <a href="#faith">Faith & Ministry</a>
@@ -85,10 +109,20 @@
       <a href="#contact">Contact</a>
     </div>
     <div>
-      <select id="languageSwitcher" aria-label="Select Language" style="padding: 0.3rem 0.5rem; font-weight: 600; border-radius: 4px; border: 1px solid #ccc;">
+      <select id="languageSwitcher" aria-label="Select Language">
         <option value="en" selected>English</option>
         <option value="he">עברית (Hebrew)</option>
         <option value="nl">Nederlands (Dutch)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="zh-CN">中文 (Chinese - Simplified)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="sw">Kiswahili (Swahili)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="ja">日本語 (Japanese)</option>
       </select>
     </div>
   </nav>
@@ -97,7 +131,7 @@
     <h2 class="section-title">🎵 Music Page</h2>
     <div class="card">
       <p>Listen to my Yahuwah-inspired songs from Suno! Each song is crafted to stir the spirit and declare truth in love.</p>
-      <p><strong>Example:</strong> <a href="https://suno.com" target="_blank">Click here to listen on Suno</a></p>
+      <p><strong>Example:</strong> <a href="https://suno.com" target="_blank" rel="noopener">Click here to listen on Suno</a></p>
     </div>
   </section>
 
@@ -137,13 +171,15 @@
     document.getElementById('languageSwitcher').addEventListener('change', function() {
       const lang = this.value;
       if (lang === 'en') {
-        window.location.href = window.location.pathname; // default English, reload page without params
+        // Reload the page without translation for English
+        window.location.href = window.location.pathname;
       } else {
-        // Redirect to Google Translate version of the page
+        // Redirect to Google Translate for other languages
         const url = 'https://translate.google.com/translate?hl=&sl=en&tl=' + lang + '&u=' + encodeURIComponent(window.location.href);
         window.open(url, '_blank');
       }
     });
   </script>
+
 </body>
 </html>
