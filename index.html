@@ -6,6 +6,7 @@
   <title>Kian's Kingdom Hub</title>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
+    /* Basic Reset and Fonts */
     * {
       box-sizing: border-box;
       margin: 0; padding: 0;
@@ -14,11 +15,43 @@
     body {
       background: linear-gradient(to bottom, #eaf6ff, #ffffff);
       color: #333;
+      transition: background-color 0.3s, color 0.3s;
     }
+
+    /* Dark Mode */
+    body.dark-mode {
+      background-color: #121212;
+      color: #ddd;
+    }
+    body.dark-mode header div {
+      background: rgba(0,0,0,0.8);
+    }
+    body.dark-mode nav {
+      background: #222;
+      border-bottom: 1px solid #444;
+    }
+    body.dark-mode nav a {
+      color: #bbdefb;
+    }
+    body.dark-mode nav a:hover {
+      color: #90caf9;
+    }
+    body.dark-mode .card {
+      background: #222;
+      box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+    }
+    body.dark-mode footer {
+      background: #000;
+      color: #bbb;
+    }
+
+    /* Header */
     header {
       background: url('https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      position: relative;
+      box-shadow: inset 0 0 2000px rgba(0, 0, 0, 0.6);
     }
-    header > div {
+    header div {
       background: rgba(0, 0, 0, 0.6);
       padding: 3rem 2rem;
       text-align: center;
@@ -26,6 +59,7 @@
     header h1 {
       font-size: 3rem;
       color: #fff;
+      font-weight: 800;
     }
     header p {
       color: #ccc;
@@ -33,18 +67,21 @@
       max-width: 600px;
       margin: 1rem auto 0;
     }
+
+    /* Nav */
     nav {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: center;
       gap: 2rem;
       background: #fff;
-      padding: 1rem;
+      padding: 1rem 2rem;
       border-bottom: 1px solid #ddd;
       box-shadow: 0 4px 8px rgba(0,0,0,0.05);
       position: sticky;
       top: 0;
       z-index: 1000;
-      align-items: center;
+      transition: background-color 0.3s;
     }
     nav a {
       text-decoration: none;
@@ -56,12 +93,37 @@
       color: #0099cc;
       transform: scale(1.05);
     }
-    nav select {
+
+    /* Language selector */
+    #languageSwitcher {
       padding: 0.3rem 0.5rem;
       font-weight: 600;
       border-radius: 4px;
       border: 1px solid #ccc;
+      cursor: pointer;
+      background: #f9f9f9;
+      transition: background-color 0.3s;
     }
+    #languageSwitcher:hover {
+      background-color: #e0f0ff;
+    }
+
+    /* Dark mode toggle button */
+    #darkModeToggle {
+      cursor: pointer;
+      background: #006699;
+      color: white;
+      border: none;
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    #darkModeToggle:hover {
+      background: #004466;
+    }
+
+    /* Sections */
     section {
       padding: 3rem 2rem;
       max-width: 900px;
@@ -83,12 +145,37 @@
     .card:hover {
       transform: translateY(-5px);
     }
+
+    /* Dark mode cards */
+    body.dark-mode .card {
+      background: #222;
+      box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+    }
+
+    /* Footer */
     footer {
       background: #151515;
       color: white;
       text-align: center;
       padding: 1.5rem;
       margin-top: 3rem;
+      transition: background-color 0.3s;
+    }
+    body.dark-mode footer {
+      background: #000;
+      color: #bbb;
+    }
+
+    /* Daily verse styling */
+    #dailyVerse {
+      font-style: italic;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-weight: 600;
+      color: #555;
+    }
+    body.dark-mode #dailyVerse {
+      color: #ccc;
     }
   </style>
 </head>
@@ -102,36 +189,39 @@
   </header>
 
   <nav>
-    <div style="flex-grow: 1; display: flex; justify-content: center; gap: 2rem;">
+    <div>
       <a href="#music">Music</a>
       <a href="#faith">Faith & Ministry</a>
       <a href="#courses">Teachings</a>
       <a href="#contact">Contact</a>
     </div>
+
     <div>
-      <select id="languageSwitcher" aria-label="Select Language">
+      <select id="languageSwitcher" aria-label="Select Language" title="Select Language">
         <option value="en" selected>English</option>
         <option value="he">עברית (Hebrew)</option>
         <option value="nl">Nederlands (Dutch)</option>
         <option value="es">Español (Spanish)</option>
         <option value="fr">Français (French)</option>
         <option value="de">Deutsch (German)</option>
+        <option value="zh-CN">中文 (Chinese Simplified)</option>
         <option value="ar">العربية (Arabic)</option>
-        <option value="zh-CN">中文 (Chinese - Simplified)</option>
         <option value="ru">Русский (Russian)</option>
-        <option value="pt">Português (Portuguese)</option>
-        <option value="sw">Kiswahili (Swahili)</option>
         <option value="hi">हिन्दी (Hindi)</option>
-        <option value="ja">日本語 (Japanese)</option>
       </select>
+      <button id="darkModeToggle" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">🌙 Dark Mode</button>
     </div>
   </nav>
+
+  <section id="dailyVerse">
+    <p>“The steadfast love of Yahuwah never ceases; His mercies never come to an end.” — Lamentations 3:22</p>
+  </section>
 
   <section id="music">
     <h2 class="section-title">🎵 Music Page</h2>
     <div class="card">
       <p>Listen to my Yahuwah-inspired songs from Suno! Each song is crafted to stir the spirit and declare truth in love.</p>
-      <p><strong>Example:</strong> <a href="https://suno.com" target="_blank" rel="noopener">Click here to listen on Suno</a></p>
+      <p><strong>Example:</strong> <a href="https://suno.com" target="_blank" rel="noopener noreferrer">Click here to listen on Suno</a></p>
     </div>
   </section>
 
@@ -159,7 +249,8 @@
   <section id="contact">
     <h2 class="section-title">📬 Contact Me</h2>
     <div class="card">
-      <p>If you want to reach out, share a testimony, ask for prayer, or suggest a topic for a new course, email me at: <strong>kingdomwithkian@example.com</strong></p>
+      <p>If you want to reach out, share a testimony, ask for prayer, or suggest a topic for a new course, email me at: <strong>your-email@example.com</strong></p>
+      <p><em>Remember, it’s never too late to turn to Yahuwah. He is always waiting with open arms.</em></p>
     </div>
   </section>
 
@@ -168,15 +259,28 @@
   </footer>
 
   <script>
+    // Language Switcher
     document.getElementById('languageSwitcher').addEventListener('change', function() {
       const lang = this.value;
       if (lang === 'en') {
-        // Reload the page without translation for English
-        window.location.href = window.location.pathname;
+        window.location.href = window.location.pathname; // default English
       } else {
-        // Redirect to Google Translate for other languages
         const url = 'https://translate.google.com/translate?hl=&sl=en&tl=' + lang + '&u=' + encodeURIComponent(window.location.href);
         window.open(url, '_blank');
       }
     });
+
+    // Dark Mode Toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      if(document.body.classList.contains('dark-mode')){
+        darkModeToggle.textContent = '☀️ Light Mode';
+      } else {
+        darkModeToggle.textContent = '🌙 Dark Mode';
+      }
+    });
   </script>
+
+</body>
+</html>
