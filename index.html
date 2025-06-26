@@ -1,265 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kian's Kingdom Hub</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Kian's Kingdom Hub: Inspiring music, teachings, and faith to bring you closer to Yahuwah.">
-  <meta name="theme-color" content="#006699">
-  <!-- SEO & Social -->
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="manifest" href="manifest.json">
-  <link rel="canonical" href="https://kian2518.github.io/">
-  <meta property="og:title" content="Kian's Kingdom Hub">
-  <meta property="og:description" content="Inspiring music, teachings, and faith.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=1600&q=80">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta name="description" content="Kian's Kingdom Hub: Inspiring music, teachings, and faith to bring you closer to Yahuwah." />
+  <link rel="canonical" href="https://kian2518.github.io/" />
+  <meta name="theme-color" content="#006699" />
+  <link rel="icon" href="favicon.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Open Graph & Twitter -->
+  <meta property="og:title" content="Kian's Kingdom Hub" />
+  <meta property="og:description" content="Inspiring music, teachings, and faith in Yahuwah." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=1600&q=80" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <!-- Structured Data -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Kian Charles",
-    "url": "https://kian2518.github.io/",
-    "sameAs": [
-      "mailto:KianCharles@gmail.com"
-    ],
-    "description": "Musician and teacher sharing faith, music, and wisdom."
-  }
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Kian Charles",
+      "url": "https://kian2518.github.io/",
+      "sameAs": ["mailto:KianCharles@gmail.com"],
+      "description": "Musician and teacher sharing faith, music, and wisdom."
+    }
   </script>
-  <!-- Security: CSP (meta version; for production, use HTTP header) -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com; connect-src 'self';">
-  <!-- Preload font -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" as="style">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
+
   <style>
+    /* Root Variables */
     :root {
-      --main-bg: #f9f9fc;
-      --main-fg: #222;
+      --bg-light: #f9f9fc;
+      --bg-dark: #121212;
+      --fg-light: #222;
+      --fg-dark: #e0e0e0;
       --accent: #006699;
-      --accent2: #ffb300;
-      --card-bg: #fff;
-      --card-shadow: 0 4px 24px rgba(0,0,0,0.05);
-      --focus: 2px solid #ffb300;
-      --error: #b00020;
-      --success: #0a5;
+      --accent-hover: #ffb300;
+      --card-bg-light: #fff;
+      --card-bg-dark: #1e1e1e;
     }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --main-bg: #161b22;
-        --main-fg: #eef0f7;
-        --card-bg: #222a34;
-        --card-shadow: 0 4px 24px rgba(0,0,0,0.25);
-      }
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--main-bg);
-      color: var(--main-fg);
-      font-family: 'Outfit', Arial, sans-serif;
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      min-height: 100vh;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--fg-light);
       transition: background 0.3s, color 0.3s;
+      min-height: 100vh;
+      line-height: 1.6;
     }
-    a { color: var(--accent); text-decoration: underline; }
-    a:focus, button:focus, select:focus, input:focus, textarea:focus {
-      outline: var(--focus); outline-offset: 2px; background: #ffe;
+
+    body.dark-mode {
+      background-color: var(--bg-dark);
+      color: var(--fg-dark);
     }
+
     header {
       background: url('https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: white;
       text-align: center;
-      padding: 3rem 0 2rem 0;
-      color: #fff;
+      padding: 3rem 2rem;
       position: relative;
     }
+
     header::after {
-      content: ""; position: absolute; left:0; top:0; right:0; bottom:0;
-      background: rgba(0,0,0,0.45); z-index: 0;
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
     }
-    header > div { position: relative; z-index: 1; }
-    header h1 { font-size: 2.5rem; margin-bottom: 0.2em;}
-    header p { font-size: 1.3rem; margin-top: 0;}
+
+    header > div {
+      position: relative;
+      z-index: 1;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 800;
+    }
+
     nav {
-      display: flex; justify-content: space-between; align-items: center;
-      background: var(--card-bg); box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-      padding: 0.5em 1em; position: sticky; top: 0; z-index: 100;
+      background: var(--card-bg-light);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
+
+    body.dark-mode nav {
+      background: var(--card-bg-dark);
+    }
+
     nav ul {
-      display: flex; gap: 1.5em; list-style: none; margin: 0; padding: 0;
+      list-style: none;
+      display: flex;
+      gap: 1rem;
     }
-    nav li { margin: 0; }
-    nav a { color: var(--accent); text-decoration: none; font-weight: 600; }
-    nav a:focus, nav a:hover { text-decoration: underline; color: var(--accent2);}
-    nav div { display: flex; gap: 0.5em; align-items: center; }
-    select, button {
-      font: inherit; padding: 0.3em 0.8em;
-      border-radius: 1.2em; border: 1px solid var(--accent);
-      background: var(--card-bg); color: var(--main-fg);
-      margin-left: 0.3em;
-      transition: box-shadow 0.2s;
+
+    nav a {
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 600;
     }
-    button:hover, button:focus { background: var(--accent); color: #fff; }
-    .visually-hidden {
-      position: absolute !important;
-      width: 1px; height: 1px; margin: -1px; border: 0; padding: 0;
-      overflow: hidden; clip: rect(0 0 0 0);
+
+    nav a:hover {
+      color: var(--accent-hover);
     }
-    .focusable:focus { 
-      position: static !important; width: auto; height: auto; 
-      margin: 0; overflow: visible; clip: auto;
-      background: var(--accent2); color: #222; padding: 1em; z-index: 1001;
+
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
     }
-    main { max-width: 800px; margin: 2rem auto; padding: 1rem; }
-    section { margin-bottom: 2.2rem; }
-    .section-title { font-size: 1.7rem; color: var(--accent);}
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
     .card {
-      background: var(--card-bg); box-shadow: var(--card-shadow);
-      border-radius: 1.3em; padding: 1.3em 1.5em; margin-top: 1em;
+      background: var(--card-bg-light);
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
-    form label { display: block; margin-top: 1em; }
-    form input, form textarea {
-      width: 100%; padding: 0.5em; margin-top: 0.2em;
-      border: 1px solid #bbb; border-radius: 0.5em; font: inherit;
-      background: var(--main-bg); color: var(--main-fg); transition: border-color 0.2s;
+
+    body.dark-mode .card {
+      background: var(--card-bg-dark);
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
     }
-    form input:focus, form textarea:focus { border-color: var(--accent);}
-    .form-error { color: var(--error); font-size: 1em; margin-top: 0.2em; }
-    .form-success { color: var(--success); font-size: 1.1em; margin-top: 0.2em; }
-    #backToTop {
-      position: fixed; bottom: 2rem; right: 2rem; display: none;
-      background: var(--accent); color: #fff; border: none;
-      padding: 0.7em 1.2em; border-radius: 1.5em;
-      font-size: 1.2em; cursor: pointer; z-index: 2000;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #151515;
+      color: white;
     }
-    #backToTop:focus, #backToTop:hover { background: var(--accent2); color: #222; }
-    @media (max-width: 600px) { main { padding: 0.3em;} nav ul { gap: 0.7em;} }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { transition: none !important; }
-      html { scroll-behavior: auto; }
+
+    /* Form */
+    form label {
+      display: block;
+      margin-top: 1em;
     }
-    img[loading="lazy"] { filter: blur(3px); transition: filter 0.2s; }
-    img[loading="lazy"].loaded { filter: none; }
+
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 0.5em;
+      margin-top: 0.3em;
+      border-radius: 0.5em;
+      border: 1px solid #ccc;
+      background: var(--bg-light);
+      color: var(--fg-light);
+    }
+
+    body.dark-mode form input,
+    body.dark-mode form textarea {
+      background: var(--bg-dark);
+      color: var(--fg-dark);
+    }
+
+    button {
+      margin-top: 1em;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: var(--accent-hover);
+      color: #222;
+    }
   </style>
 </head>
 <body>
-  <a href="#mainContent" class="visually-hidden focusable" tabindex="0" aria-label="Skip to main content">Skip to main content</a>
-  <header role="banner" aria-label="Site header">
+  <header>
     <div>
       <h1>Kian's Kingdom Hub</h1>
       <p>Bringing the world closer to Yahuwah through music, teaching, and truth</p>
     </div>
   </header>
-  <nav aria-label="Main navigation">
+
+  <nav>
     <ul>
       <li><a href="#music">Music</a></li>
-      <li><a href="#faith">Faith & Ministry</a></li>
-      <li><a href="#courses">Teachings</a></li>
+      <li><a href="#faith">Faith</a></li>
+      <li><a href="#courses">Courses</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div>
-      <label for="languageSwitcher" class="visually-hidden">Select Language</label>
-      <select id="languageSwitcher" aria-label="Select Language">
+      <select id="languageSwitcher">
         <option value="en" selected>English</option>
-        <option value="he">עברית (Hebrew)</option>
-        <option value="nl">Nederlands (Dutch)</option>
-        <option value="es">Español (Spanish)</option>
-        <option value="fr">Français (French)</option>
-        <option value="de">Deutsch (German)</option>
-        <option value="zh-CN">中文 (Chinese Simplified)</option>
-        <option value="ar">العربية (Arabic)</option>
-        <option value="ru">Русский (Russian)</option>
-        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="he">עברית</option>
+        <option value="nl">Nederlands</option>
+        <option value="es">Español</option>
+        <option value="fr">Français</option>
       </select>
-      <span id="languageNote" class="visually-hidden" aria-live="polite">
-        Language selection opens Google Translate in a new tab.
-      </span>
-      <button id="darkModeToggle" aria-label="Toggle dark mode" type="button">🌙 Dark Mode</button>
+      <button id="darkModeToggle">🌙 Dark Mode</button>
     </div>
   </nav>
-  <main id="mainContent" role="main" tabindex="-1">
-    <section id="dailyVerse" aria-labelledby="dailyVerseTitle">
-      <h2 class="visually-hidden" id="dailyVerseTitle">Daily Verse</h2>
-      <p id="verseText">“The steadfast love of Yahuwah never ceases; His mercies never come to an end.” — Lamentations 3:22</p>
+
+  <main>
+    <section id="dailyVerse">
+      <p><strong>Daily Verse:</strong> <span id="verseText">Loading...</span></p>
     </section>
-    <section id="music" aria-labelledby="musicTitle">
-      <h2 class="section-title" id="musicTitle">🎵 Music Page</h2>
+
+    <section id="music">
+      <h2 class="section-title">🎵 Music</h2>
       <div class="card">
-        <p>Listen to my Yahuwah-inspired songs! Each song is crafted to stir the spirit and declare truth in love.</p>
-        <p>
-          <strong>Example Song:</strong>
-          <a href="https://suno.com/song/your-song-id" target="_blank" rel="noopener noreferrer">Click here to listen to my music on Suno</a>
-        </p>
+        <p>Worship songs that bring honor to Yahuwah and encourage the soul. Listen on Suno:</p>
+        <a href="https://suno.com/song/your-song-id" target="_blank">Click here to listen</a>
       </div>
     </section>
-    <section id="faith" aria-labelledby="faithTitle">
-      <h2 class="section-title" id="faithTitle">🙏 Faith & Ministry</h2>
+
+    <section id="faith">
+      <h2 class="section-title">🙏 Faith & Ministry</h2>
       <div class="card">
-        <p>This is where I share dreams, visions, prophetic insights, and deep revelations that Yahuwah has given me. Every word here is to glorify Him and build up His kingdom.</p>
+        <p>Dreams, visions, prophetic words, and revelations from Yahuwah — all for His glory and to strengthen your walk.</p>
       </div>
     </section>
-    <section id="courses" aria-labelledby="coursesTitle">
-      <h2 class="section-title" id="coursesTitle">📖 Teachings & Courses</h2>
+
+    <section id="courses">
+      <h2 class="section-title">📖 Teachings & Courses</h2>
       <div class="card">
-        <p>Here you’ll find free, powerful teachings in:</p>
         <ul>
-          <li>✨ Ancient & Modern Hebrew</li>
-          <li>📊 Beginner Accounting</li>
-          <li>🗣️ Language Learning (Dutch, etc.)</li>
-          <li>🕊️ Kingdom Identity & Purpose</li>
+          <li>📜 Biblical & Modern Hebrew</li>
+          <li>📊 Accounting for beginners</li>
+          <li>🌍 Dutch and other languages</li>
+          <li>👑 Kingdom identity & purpose</li>
         </ul>
-        <p>Each course is filled with light and wisdom to help you grow in truth and skills.</p>
       </div>
     </section>
-    <section id="contact" aria-labelledby="contactTitle">
-      <h2 class="section-title" id="contactTitle">📬 Contact Me</h2>
+
+    <section id="contact">
+      <h2 class="section-title">📬 Contact</h2>
       <div class="card">
-        <form id="contactForm" action="#" method="POST" aria-label="Contact form" novalidate>
+        <form id="contactForm">
           <label for="name">Name:</label>
-          <input id="name" name="name" type="text" required autocomplete="name">
-          <span class="form-error" id="nameError" aria-live="polite"></span>
+          <input id="name" name="name" required />
+
           <label for="email">Email:</label>
-          <input id="email" name="email" type="email" required autocomplete="email">
-          <span class="form-error" id="emailError" aria-live="polite"></span>
+          <input id="email" name="email" type="email" required />
+
           <label for="message">Message:</label>
           <textarea id="message" name="message" rows="4" required></textarea>
-          <span class="form-error" id="messageError" aria-live="polite"></span>
+
           <button type="submit">Send</button>
-          <span class="form-success" id="formSuccess" aria-live="polite"></span>
         </form>
-        <p><em>Prefer email? <a href="mailto:KianCharles@gmail.com">KianCharles@gmail.com</a></em></p>
-        <p><em>Remember, it’s never too late to turn to Yahuwah. He is always waiting with open arms.</em></p>
+        <p><em>Prefer email? Contact me at <a href="mailto:KianCharles@gmail.com">KianCharles@gmail.com</a></em></p>
       </div>
     </section>
   </main>
-  <button id="backToTop" aria-label="Back to top">↑ Top</button>
-  <footer role="contentinfo">
-    <p>© 2025 Kian's Kingdom Hub | All glory to Yahuwah Most High</p>
+
+  <footer>
+    <p>© 2025 Kian's Kingdom Hub — All glory to Yahuwah</p>
   </footer>
-  <!-- PWA service worker registration -->
+
   <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('sw.js');
-      });
-    }
-    // Accessibility and UI scripts:
-    document.getElementById('languageSwitcher').addEventListener('change', function() {
-      const lang = this.value;
-      document.getElementById('languageNote').style.display = 'inline';
-      if (lang === 'en') {
-        window.location.href = window.location.pathname;
-      } else {
-        const url = 'https://translate.google.com/translate?hl=&sl=en&tl=' + lang + '&u=' + encodeURIComponent(window.location.href);
-        window.open(url, '_blank');
-      }
-    });
+    // Dark Mode Toggle
     const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.body;
     function setDarkMode(enabled) {
-      if(enabled) {
+      if (enabled) {
         body.classList.add('dark-mode');
         darkModeToggle.textContent = '☀️ Light Mode';
         localStorage.setItem('darkMode', 'enabled');
@@ -273,59 +298,36 @@
     darkModeToggle.addEventListener('click', () => {
       setDarkMode(!body.classList.contains('dark-mode'));
     });
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
-    });
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    // Daily Verse randomized
+
+    // Daily Verse Randomizer
     const verses = [
-      '“The steadfast love of Yahuwah never ceases; His mercies never come to an end.” — Lamentations 3:22',
-      '“Trust in Yahuwah with all your heart and lean not on your own understanding.” — Proverbs 3:5',
-      '“Be strong and courageous. Do not fear for Yahuwah is with you.” — Joshua 1:9',
-      '“Blessed are the pure in heart, for they shall see Elohim.” — Matthew 5:8',
-      '“Yahuwah is my shepherd; I shall not want.” — Psalm 23:1'
+      "“The steadfast love of Yahuwah never ceases; His mercies never come to an end.” — Lamentations 3:22",
+      "“Trust in Yahuwah with all your heart and lean not on your own understanding.” — Proverbs 3:5",
+      "“Be strong and courageous. Do not fear for Yahuwah is with you.” — Joshua 1:9",
+      "“Blessed are the pure in heart, for they shall see Elohim.” — Matthew 5:8",
+      "“Yahuwah is my shepherd; I shall not want.” — Psalm 23:1"
     ];
     document.getElementById('verseText').textContent = verses[Math.floor(Math.random() * verses.length)];
-    // Contact Form Validation & Success Message
-    const contactForm = document.getElementById('contactForm');
-    contactForm.addEventListener('submit', function(e) {
+
+    // Language Switcher
+    document.getElementById('languageSwitcher').addEventListener('change', function () {
+      const lang = this.value;
+      window.open(`https://translate.google.com/translate?hl=&sl=en&tl=${lang}&u=${window.location.href}`, '_blank');
+    });
+
+    // Contact form mock validation
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
       e.preventDefault();
-      let valid = true;
-      const name = document.getElementById('name');
-      const email = document.getElementById('email');
-      const message = document.getElementById('message');
-      const nameError = document.getElementById('nameError');
-      const emailError = document.getElementById('emailError');
-      const messageError = document.getElementById('messageError');
-      const formSuccess = document.getElementById('formSuccess');
-      nameError.textContent = emailError.textContent = messageError.textContent = formSuccess.textContent = '';
-      if (!name.value.trim()) {
-        nameError.textContent = "Please enter your name.";
-        valid = false;
-      }
-      if (!email.value.match(/^[^@]+@[^@]+\.[^@]+$/)) {
-        emailError.textContent = "Please enter a valid email.";
-        valid = false;
-      }
-      if (!message.value.trim()) {
-        messageError.textContent = "Please enter your message.";
-        valid = false;
-      }
-      if (valid) {
-        formSuccess.textContent = "Thank you for contacting me! I will respond soon.";
-        contactForm.reset();
-        setTimeout(() => { formSuccess.textContent = ''; }, 6000);
-      }
+      alert("Thank you for your message! Yahuwah bless you.");
+      this.reset();
     });
-    // Lazy loading images
-    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-      img.addEventListener('load', () => img.classList.add('loaded'));
-    });
+
+    // Service worker registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js');
+      });
+    }
   </script>
-  <!-- Example privacy-friendly analytics (optional) -->
-  <!-- <script defer data-domain="kian2518.github.io" src="https://plausible.io/js/script.js"></script> -->
 </body>
 </html>
