@@ -33,7 +33,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
 
   <style>
-    /* Root Variables */
     :root {
       --bg-light: #f9f9fc;
       --bg-dark: #121212;
@@ -90,6 +89,12 @@
       font-weight: 800;
     }
 
+    header p {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+      font-weight: 600;
+    }
+
     nav {
       background: var(--card-bg-light);
       padding: 1rem;
@@ -115,10 +120,50 @@
       text-decoration: none;
       color: var(--accent);
       font-weight: 600;
+      transition: color 0.3s;
     }
 
     nav a:hover {
       color: var(--accent-hover);
+    }
+
+    nav > div {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    select {
+      padding: 0.3rem 0.5rem;
+      border-radius: 0.3rem;
+      border: 1px solid #ccc;
+      background: var(--card-bg-light);
+      color: var(--fg-light);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.dark-mode select {
+      background: var(--card-bg-dark);
+      color: var(--fg-dark);
+      border: 1px solid #555;
+    }
+
+    button#darkModeToggle {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    button#darkModeToggle:hover {
+      background: var(--accent-hover);
+      color: #222;
     }
 
     main {
@@ -142,6 +187,7 @@
       padding: 1.5rem;
       border-radius: 1rem;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s, box-shadow 0.3s;
     }
 
     body.dark-mode .card {
@@ -154,12 +200,14 @@
       padding: 1rem;
       background: #151515;
       color: white;
+      font-weight: 600;
     }
 
     /* Form */
     form label {
       display: block;
       margin-top: 1em;
+      font-weight: 600;
     }
 
     form input,
@@ -171,15 +219,18 @@
       border: 1px solid #ccc;
       background: var(--bg-light);
       color: var(--fg-light);
+      font-size: 1rem;
+      font-family: inherit;
     }
 
     body.dark-mode form input,
     body.dark-mode form textarea {
       background: var(--bg-dark);
       color: var(--fg-dark);
+      border: 1px solid #555;
     }
 
-    button {
+    button[type="submit"] {
       margin-top: 1em;
       background: var(--accent);
       color: white;
@@ -188,11 +239,30 @@
       border-radius: 0.5rem;
       cursor: pointer;
       font-weight: bold;
+      font-size: 1rem;
+      transition: background 0.3s;
     }
 
-    button:hover {
+    button[type="submit"]:hover {
       background: var(--accent-hover);
       color: #222;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      header h1 {
+        font-size: 2.2rem;
+      }
     }
   </style>
 </head>
@@ -212,27 +282,27 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div>
-      <select id="languageSwitcher">
+      <select id="languageSwitcher" aria-label="Language Switcher">
         <option value="en" selected>English</option>
         <option value="he">עברית</option>
         <option value="nl">Nederlands</option>
         <option value="es">Español</option>
         <option value="fr">Français</option>
       </select>
-      <button id="darkModeToggle">🌙 Dark Mode</button>
+      <button id="darkModeToggle" aria-label="Toggle Dark Mode">🌙 Dark Mode</button>
     </div>
   </nav>
 
   <main>
     <section id="dailyVerse">
-      <p><strong>Daily Verse:</strong> <span id="verseText">Loading...</span></p>
+      <p><strong>Daily Verse:</strong> <span id="verseText">Loading verse...</span></p>
     </section>
 
     <section id="music">
       <h2 class="section-title">🎵 Music</h2>
       <div class="card">
         <p>Worship songs that bring honor to Yahuwah and encourage the soul. Listen on Suno:</p>
-        <a href="https://suno.com/song/your-song-id" target="_blank">Click here to listen</a>
+        <a href="https://suno.com/song/your-song-id" target="_blank" rel="noopener noreferrer">Click here to listen</a>
       </div>
     </section>
 
@@ -258,12 +328,12 @@
     <section id="contact">
       <h2 class="section-title">📬 Contact</h2>
       <div class="card">
-        <form id="contactForm">
+        <form id="contactForm" aria-label="Contact Form">
           <label for="name">Name:</label>
-          <input id="name" name="name" required />
+          <input id="name" name="name" required autocomplete="name" />
 
           <label for="email">Email:</label>
-          <input id="email" name="email" type="email" required />
+          <input id="email" name="email" type="email" required autocomplete="email" />
 
           <label for="message">Message:</label>
           <textarea id="message" name="message" rows="4" required></textarea>
@@ -280,7 +350,7 @@
   </footer>
 
   <script>
-    // Dark Mode Toggle
+    // Dark Mode Toggle with persistence
     const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.body;
     function setDarkMode(enabled) {
@@ -299,36 +369,42 @@
       setDarkMode(!body.classList.contains('dark-mode'));
     });
 
-    // Daily Verse Randomizer
-    const verses = [
-      "“The steadfast love of Yahuwah never ceases; His mercies never come to an end.” — Lamentations 3:22",
-      "“Trust in Yahuwah with all your heart and lean not on your own understanding.” — Proverbs 3:5",
-      "“Be strong and courageous. Do not fear for Yahuwah is with you.” — Joshua 1:9",
-      "“Blessed are the pure in heart, for they shall see Elohim.” — Matthew 5:8",
-      "“Yahuwah is my shepherd; I shall not want.” — Psalm 23:1"
-    ];
-    document.getElementById('verseText').textContent = verses[Math.floor(Math.random() * verses.length)];
+    // Fetch daily verse from Bible API
+    async function fetchDailyVerse() {
+      const verseContainer = document.getElementById('verseText');
+      try {
+        // You can customize this to fetch different verses based on date
+        const response = await fetch('https://bible-api.com/psalm 23:1?translation=kjv');
+        if (!response.ok) throw new Error('Verse not found');
+        const data = await response.json();
+        verseContainer.textContent = `"${data.text.trim()}" — ${data.reference}`;
+      } catch (error) {
+        verseContainer.textContent = 'Could not load verse today. Trust Yahuwah’s Word always!';
+      }
+    }
+    fetchDailyVerse();
 
-    // Language Switcher
+    // Language Switcher using Google Translate
     document.getElementById('languageSwitcher').addEventListener('change', function () {
       const lang = this.value;
-      window.open(`https://translate.google.com/translate?hl=&sl=en&tl=${lang}&u=${window.location.href}`, '_blank');
+      window.open(`https://translate.google.com/translate?hl=&sl=en&tl=${lang}&u=${encodeURIComponent(window.location.href)}`, '_blank');
     });
 
-    // Contact form mock validation
+    // Contact form submit handler (mock)
     document.getElementById('contactForm').addEventListener('submit', function (e) {
       e.preventDefault();
       alert("Thank you for your message! Yahuwah bless you.");
       this.reset();
     });
 
-    // Service worker registration
+    // Optional: Register service worker if you want offline features
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js');
+        navigator.serviceWorker.register('sw.js').catch(() => {
+          console.log('Service worker registration failed.');
+        });
       });
     }
   </script>
 </body>
 </html>
-
