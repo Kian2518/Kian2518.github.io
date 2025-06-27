@@ -4,113 +4,331 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kian's Kingdom Hub</title>
+  <meta name="description" content="Kian's Kingdom Hub: Inspiring music, teachings, and faith to bring you closer to Yahuwah." />
+  <link rel="canonical" href="https://kian2518.github.io/" />
+  <meta name="theme-color" content="#006699" />
+  <link rel="icon" href="favicon.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Open Graph & Twitter -->
+  <meta property="og:title" content="Kian's Kingdom Hub" />
+  <meta property="og:description" content="Inspiring music, teachings, and faith in Yahuwah." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=1600&q=80" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Kian Charles",
+      "url": "https://kian2518.github.io/",
+      "sameAs": ["mailto:KianCharles@gmail.com"],
+      "description": "Musician and teacher sharing faith, music, and wisdom."
+    }
+  </script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
+
   <style>
-    /* Reset some default styles */
+    /* Root Variables */
+    :root {
+      --bg-light: #f9f9fc;
+      --bg-dark: #121212;
+      --fg-light: #222;
+      --fg-dark: #e0e0e0;
+      --accent: #006699;
+      --accent-hover: #ffb300;
+      --card-bg-light: #fff;
+      --card-bg-dark: #1e1e1e;
+    }
+
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #121212;
-      color: #f0f0f0;
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--fg-light);
+      transition: background 0.3s, color 0.3s;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      line-height: 1.6;
+    }
+
+    body.dark-mode {
+      background-color: var(--bg-dark);
+      color: var(--fg-dark);
     }
 
     header {
-      width: 100%;
-      max-width: 900px;
-      margin-bottom: 40px;
+      background: url('https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: white;
       text-align: center;
+      padding: 3rem 2rem;
+      position: relative;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    header > div {
+      position: relative;
+      z-index: 1;
     }
 
     header h1 {
-      font-size: 2.8rem;
-      font-weight: bold;
-      color: #FFD700; /* gold color for royalty */
-      text-shadow: 0 0 10px #FFD700;
+      font-size: 3rem;
+      font-weight: 800;
     }
 
-    /* Dark/Light mode toggle button */
-    #toggleThemeBtn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      background-color: #FFD700;
-      color: #121212;
+    nav {
+      background: var(--card-bg-light);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    body.dark-mode nav {
+      background: var(--card-bg-dark);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--accent);
       font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
     }
 
-    #toggleThemeBtn:hover {
-      background-color: #e6c200;
+    nav a:hover {
+      color: var(--accent-hover);
     }
 
-    /* Light mode styles */
-    body.light-mode {
-      background-color: #fafafa;
-      color: #222;
-    }
-
-    body.light-mode header h1 {
-      color: #b8860b;
-      text-shadow: none;
-    }
-
-    body.light-mode #toggleThemeBtn {
-      background-color: #b8860b;
-      color: #fafafa;
-    }
-
-    body.light-mode #toggleThemeBtn:hover {
-      background-color: #a37300;
-    }
-
-    /* Main content area */
     main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .card {
+      background: var(--card-bg-light);
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode .card {
+      background: var(--card-bg-dark);
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #151515;
+      color: white;
+    }
+
+    /* Form */
+    form label {
+      display: block;
+      margin-top: 1em;
+    }
+
+    form input,
+    form textarea {
       width: 100%;
-      max-width: 900px;
+      padding: 0.5em;
+      margin-top: 0.3em;
+      border-radius: 0.5em;
+      border: 1px solid #ccc;
+      background: var(--bg-light);
+      color: var(--fg-light);
+    }
+
+    body.dark-mode form input,
+    body.dark-mode form textarea {
+      background: var(--bg-dark);
+      color: var(--fg-dark);
+    }
+
+    button {
+      margin-top: 1em;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: var(--accent-hover);
+      color: #222;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Kian's Kingdom Hub</h1>
-    <button id="toggleThemeBtn" aria-label="Toggle Dark/Light Mode">Toggle Light/Dark Mode</button>
+    <div>
+      <h1>Kian's Kingdom Hub</h1>
+      <p>Bringing the world closer to Yahuwah through music, teaching, and truth</p>
+    </div>
   </header>
 
+  <nav>
+    <ul>
+      <li><a href="#music">Music</a></li>
+      <li><a href="#faith">Faith</a></li>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div>
+      <select id="languageSwitcher">
+        <option value="en" selected>English</option>
+        <option value="he">עברית</option>
+        <option value="nl">Nederlands</option>
+        <option value="es">Español</option>
+        <option value="fr">Français</option>
+      </select>
+      <button id="darkModeToggle">🌙 Dark Mode</button>
+    </div>
+  </nav>
+
   <main>
-    <!-- Your content sections can go here -->
-    <p>Welcome to Kian's Kingdom Hub — a place for faith, growth, and glory to Yahuwah!</p>
+    <section id="dailyVerse">
+      <p><strong>Daily Verse:</strong> <span id="verseText">Loading...</span></p>
+    </section>
+
+    <section id="music">
+      <h2 class="section-title">🎵 Music</h2>
+      <div class="card">
+        <p>Worship songs that bring honor to Yahuwah and encourage the soul. Listen on Suno:</p>
+        <a href="https://suno.com/song/your-song-id" target="_blank">Click here to listen</a>
+      </div>
+    </section>
+
+    <section id="faith">
+      <h2 class="section-title">🙏 Faith & Ministry</h2>
+      <div class="card">
+        <p>Dreams, visions, prophetic words, and revelations from Yahuwah — all for His glory and to strengthen your walk.</p>
+      </div>
+    </section>
+
+    <section id="courses">
+      <h2 class="section-title">📖 Teachings & Courses</h2>
+      <div class="card">
+        <ul>
+          <li>📜 Biblical & Modern Hebrew</li>
+          <li>📊 Accounting for beginners</li>
+          <li>🌍 Dutch and other languages</li>
+          <li>👑 Kingdom identity & purpose</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">📬 Contact</h2>
+      <div class="card">
+        <form id="contactForm">
+          <label for="name">Name:</label>
+          <input id="name" name="name" required />
+
+          <label for="email">Email:</label>
+          <input id="email" name="email" type="email" required />
+
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
+
+          <button type="submit">Send</button>
+        </form>
+        <p><em>Prefer email? Contact me at <a href="mailto:KianCharles@gmail.com">KianCharles@gmail.com</a></em></p>
+      </div>
+    </section>
   </main>
 
+  <footer>
+    <p>© 2025 Kian's Kingdom Hub — All glory to Yahuwah</p>
+  </footer>
+
   <script>
-    // Theme toggle logic
-    const toggleBtn = document.getElementById('toggleThemeBtn');
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('light-mode');
-      // Optional: Save theme preference in localStorage
-      if(document.body.classList.contains('light-mode')) {
-        localStorage.setItem('theme', 'light');
+    // Dark Mode Toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    function setDarkMode(enabled) {
+      if (enabled) {
+        body.classList.add('dark-mode');
+        darkModeToggle.textContent = '☀️ Light Mode';
+        localStorage.setItem('darkMode', 'enabled');
       } else {
-        localStorage.setItem('theme', 'dark');
+        body.classList.remove('dark-mode');
+        darkModeToggle.textContent = '🌙 Dark Mode';
+        localStorage.setItem('darkMode', 'disabled');
       }
+    }
+    setDarkMode(localStorage.getItem('darkMode') === 'enabled');
+    darkModeToggle.addEventListener('click', () => {
+      setDarkMode(!body.classList.contains('dark-mode'));
     });
 
-    // On page load, set theme from saved preference
-    const savedTheme = localStorage.getItem('theme');
-    if(savedTheme === 'light') {
-      document.body.classList.add('light-mode');
+    // Daily Verse Randomizer
+    const verses = [
+      "“The steadfast love of Yahuwah never ceases; His mercies never come to an end.” — Lamentations 3:22",
+      "“Trust in Yahuwah with all your heart and lean not on your own understanding.” — Proverbs 3:5",
+      "“Be strong and courageous. Do not fear for Yahuwah is with you.” — Joshua 1:9",
+      "“Blessed are the pure in heart, for they shall see Elohim.” — Matthew 5:8",
+      "“Yahuwah is my shepherd; I shall not want.” — Psalm 23:1"
+    ];
+    document.getElementById('verseText').textContent = verses[Math.floor(Math.random() * verses.length)];
+
+    // Language Switcher
+    document.getElementById('languageSwitcher').addEventListener('change', function () {
+      const lang = this.value;
+      window.open(`https://translate.google.com/translate?hl=&sl=en&tl=${lang}&u=${window.location.href}`, '_blank');
+    });
+
+    // Contact form mock validation
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert("Thank you for your message! Yahuwah bless you.");
+      this.reset();
+    });
+
+    // Service worker registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js');
+      });
     }
   </script>
 </body>
 </html>
+
