@@ -1,190 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kian's Creative Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kian's Kingdom Hub</title>
+  <meta name="description" content="Kian's Kingdom Hub: Inspiring music, teachings, and faith to bring you closer to Yahuwah." />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
-    /* General Styles */
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
+      padding: 0;
+      font-family: 'Outfit', sans-serif;
+    }
+    body {
+      background: linear-gradient(to bottom, #eaf6ff, #ffffff);
       color: #333;
       transition: background-color 0.3s, color 0.3s;
+      min-height: 100vh;
+      line-height: 1.6;
     }
-    a {
-      text-decoration: none;
-      color: inherit;
+    body.dark-mode {
+      background-color: #121212;
+      color: #e0e0e0;
     }
-
-    /* Navigation */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      padding: 1rem 2rem;
-      background-color: rgba(0,0,0,0.6);
-      position: fixed;
-      width: 100%;
-      top: 0;
-      color: white;
-      z-index: 10;
+    body.dark-mode header div,
+    body.dark-mode section,
+    body.dark-mode .card {
+      background-color: #1f1f1f;
     }
-    nav select, nav button {
-      margin-left: 0.5rem;
-      padding: 0.3rem 0.5rem;
-      font-size: 1rem;
-      border-radius: 4px;
-      border: none;
-      cursor: pointer;
+    body.dark-mode nav {
+      background: #181C20;
+      border-bottom: 1px solid #333;
     }
-
-    /* Header */
+    body.dark-mode nav a {
+      color: #bbdefb;
+    }
+    body.dark-mode nav a:hover {
+      color: #90caf9;
+    }
+    body.dark-mode .card {
+      background: #222;
+      box-shadow: 0 4px 12px rgba(255,255,255,0.08);
+    }
+    body.dark-mode footer {
+      background: #000;
+      color: #bbb;
+    }
     header {
-      height: 100vh;
-      background-image: url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80');
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      background: url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      position: relative;
+      box-shadow: inset 0 0 2000px rgba(0, 0, 0, 0.6);
+    }
+    header div {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 3rem 2rem;
       text-align: center;
-      padding: 0 1rem;
     }
     header h1 {
       font-size: 3rem;
-      line-height: 1.2;
-    }
-
-    /* Sections */
-    section {
-      padding: 4rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .daily-verse {
-      background-color: #e0f7fa;
-      border-left: 6px solid #00796b;
-      padding: 1rem 2rem;
-      margin-bottom: 2rem;
-      font-size: 1.2rem;
-      font-style: italic;
-    }
-
-    /* Dark mode */
-    body.dark-mode {
-      background-color: #121212;
-      color: #f5f5f5;
-    }
-    body.dark-mode .daily-verse {
-      background-color: #004d40;
-      border-left-color: #26a69a;
       color: #fff;
+      font-weight: 800;
+      letter-spacing: 1px;
     }
-    body.dark-mode nav {
-      background-color: rgba(0,0,0,0.8);
+    header p {
+      color: #ccc;
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 1rem auto 0;
     }
-
-    /* Footer */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      background: #fff;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #ddd;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background-color 0.3s;
+    }
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    nav a {
+      text-decoration: none;
+      color: #006699;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: 0.3s;
+      padding: 0.2em 0.5em;
+      border-radius: 4px;
+    }
+    nav a:focus,
+    nav a:hover {
+      color: #0099cc;
+      background: #e0f0ff;
+      outline: 2px solid #0099cc;
+      outline-offset: 2px;
+      transform: scale(1.05);
+    }
+    section {
+      padding: 3rem 2rem;
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      transition: background-color 0.3s;
+    }
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 700;
+    }
+    .card {
+      background: linear-gradient(to bottom, #ffffff, #f2f8ff);
+      border-radius: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
     footer {
-      background-color: #00796b;
+      background: #151515;
       color: white;
       text-align: center;
-      padding: 2rem 1rem;
-    }
-
-    /* Buttons */
-    .btn {
-      background-color: #00796b;
-      color: white;
-      padding: 0.7rem 1.5rem;
-      border: none;
-      cursor: pointer;
-      border-radius: 4px;
+      padding: 1.5rem;
+      margin-top: 3rem;
       font-size: 1rem;
     }
-    .btn:hover {
-      background-color: #004d40;
-    }
-
-    /* Forms */
-    form input, form textarea {
-      width: 100%;
-      padding: 0.7rem;
-      margin-bottom: 1rem;
-      border-radius: 4px;
-      border: 1px solid #ccc;
+    @media (max-width: 700px) {
+      header div { padding: 2rem 1rem; }
+      nav { flex-direction: column; gap: 1rem; padding: 0.6rem 1rem; }
+      nav ul { gap: 1.2rem; }
+      section { padding: 2rem 0.7rem; }
+      .card { padding: 1.2rem; }
     }
   </style>
 </head>
 <body>
-
-  <!-- Navigation -->
-  <nav>
-    <div>Kian's Website</div>
-    <div>
-      <select id="languageSwitcher">
-        <option value="en">English</option>
-        <option value="es">Spanish</option>
-        <option value="fr">French</option>
-        <option value="de">German</option>
-        <option value="zh">Chinese</option>
-        <option value="ar">Arabic</option>
-        <option value="hi">Hindi</option>
-        <option value="ru">Russian</option>
-        <option value="pt">Portuguese</option>
-        <option value="ja">Japanese</option>
-      </select>
-      <button class="btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
-    </div>
-  </nav>
-
-  <!-- Header -->
   <header>
-    <h1>Welcome to My Creative Space</h1>
+    <div>
+      <h1>Kian's Kingdom Hub</h1>
+      <p>Bringing the world closer to Yahuwah through music, teaching, and truth</p>
+    </div>
   </header>
 
-  <!-- Daily Verse Section -->
-  <section>
-    <div class="daily-verse" id="dailyVerse">
-      "Abba Yahuwah, guide my steps today and fill me with Your peace." – Daily Verse
-    </div>
+  <nav>
+    <ul>
+      <li><a href="#music">Music</a></li>
+      <li><a href="#faith">Faith & Ministry</a></li>
+      <li><a href="#courses">Teachings</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button id="darkModeToggle">🌙 Dark Mode</button>
+  </nav>
 
-    <!-- Prayer/Testimony Form -->
-    <h2>Submit Your Prayer or Testimony</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <textarea rows="4" placeholder="Your Prayer or Testimony" required></textarea>
-      <button type="submit" class="btn">Submit</button>
-    </form>
+  <section id="music">
+    <h2 class="section-title">🎵 Music</h2>
+    <div class="card">
+      <p>Listen to Yahuwah-inspired songs that stir the spirit and release truth.</p>
+    </div>
   </section>
 
-  <!-- Footer -->
+  <section id="faith">
+    <h2 class="section-title">🙏 Faith & Ministry</h2>
+    <div class="card">
+      <p>Prophetic insights, dreams, visions, and words that glorify Yahuwah and strengthen your walk.</p>
+    </div>
+  </section>
+
+  <section id="courses">
+    <h2 class="section-title">📖 Teachings & Courses</h2>
+    <div class="card">
+      <ul>
+        <li>Hebrew (Biblical & Modern)</li>
+        <li>Kingdom Identity</li>
+        <li>Language Learning</li>
+        <li>Life Skills</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">📬 Contact Me</h2>
+    <div class="card">
+      <p>Email: <a href="mailto:KianCharles@gmail.com">KianCharles@gmail.com</a></p>
+      <p>Or reach out with a message from the heart. Yahuwah is listening. 💙</p>
+    </div>
+  </section>
+
   <footer>
-    <p>All Glory to Yahuwah. Website by Kian 💛</p>
+    <p>© 2025 Kian's Kingdom Hub | All glory to Yahuwah</p>
   </footer>
 
   <script>
-    // Dark Mode Toggle
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
-    }
-
-    // Daily Verse Generator
-    const verses = [
-      '"Abba Yahuwah, You are my refuge."',
-      '"Trust in Yahuwah with all your heart."',
-      '"Yahushua is my guide and strength."',
-      '"Ruach ha Kodesh leads me in all truth."'
-    ];
-    const verseElement = document.getElementById('dailyVerse');
-    setInterval(() => {
-      const randomVerse = verses[Math.floor(Math.random() * verses.length)];
-      verseElement.textContent = randomVerse;
-    }, 86400000); // Changes once per day
+    const toggle = document.getElementById("darkModeToggle");
+    toggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+    });
   </script>
-
 </body>
 </html>
