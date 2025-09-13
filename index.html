@@ -7,117 +7,43 @@
   <meta name="description" content="Kian's Kingdom Hub: Inspiring music, teachings, and faith to bring you closer to Yahuwah." />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Outfit', sans-serif; }
+    * { box-sizing: border-box; margin:0; padding:0; font-family:'Outfit',sans-serif; }
+    body { background:linear-gradient(to bottom,#eaf6ff,#ffffff); color:#333; transition:background-color 0.3s,color 0.3s; min-height:100vh; line-height:1.6; }
 
-    body {
-      background: linear-gradient(to bottom, #eaf6ff, #ffffff);
-      color: #333;
-      transition: background-color 0.3s, color 0.3s;
-      min-height: 100vh;
-      line-height: 1.6;
-      position: relative;
-      z-index: 0;
-    }
+    /* Dark mode body and elements */
+    body.dark-mode { background-color: #121212; color: #e0e0e0; }
 
-    /* Full page dark overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0); /* no dark by default */
-      pointer-events: none;
-      z-index: 999; /* above content */
-      transition: background-color 0.3s;
-    }
+    /* Header image stays bright in dark mode */
+    header { position:relative; background:url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; filter: brightness(1.05); }
+    header div { position:relative; padding:3rem 2rem; text-align:center; background:rgba(0,0,0,0.3); border-radius:12px; display:inline-block; transition: background 0.3s; }
+    body.dark-mode header div { background: rgba(0,0,0,0.3); }
 
-    body.dark-mode::before {
-      background-color: rgba(0,0,0,0.65); /* dark overlay */
-    }
+    /* Nav */
+    nav { display:flex; justify-content:space-between; align-items:center; gap:1rem; background:#fff; padding:1rem 2rem; border-bottom:1px solid #ddd; box-shadow:0 4px 8px rgba(0,0,0,0.03); position:sticky; top:0; z-index:1000; transition: background-color 0.3s; }
+    body.dark-mode nav { background:#181C20; border-bottom:1px solid #333; }
+    nav ul { display:flex; gap:2rem; list-style:none; }
+    nav a { text-decoration:none; color:#006699; font-weight:600; font-size:1rem; transition:0.3s; padding:0.2em 0.5em; border-radius:12px; }
+    body.dark-mode nav a { color:#bbdefb; }
+    nav a:focus, nav a:hover { color:#0099cc; background:#e0f0ff; outline:2px solid #0099cc; outline-offset:2px; transform:scale(1.05); }
+    body.dark-mode nav a:hover { color:#90caf9; background:#333; }
 
-    body.dark-mode { color: #e0e0e0; }
+    /* Buttons / Dropdown */
+    #darkModeToggle, #languageSelect { border-radius:12px; padding:0.5em 1em; border:1px solid #ccc; cursor:pointer; transition:all 0.3s; font-family:'Outfit',sans-serif; font-weight:600; background-color:#f0f0f0; }
+    #darkModeToggle:hover, #languageSelect:hover { background-color:#e0e0e0; }
+    body.dark-mode #darkModeToggle, body.dark-mode #languageSelect { background-color:#333; color:#e0e0e0; border:1px solid #555; }
+    body.dark-mode #darkModeToggle:hover, body.dark-mode #languageSelect:hover { background-color:#444; }
 
-    nav { 
-      display: flex; justify-content: space-between; align-items: center; 
-      gap: 1rem; background: #fff; padding: 1rem 2rem; 
-      border-bottom: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0,0,0,0.03); 
-      position: sticky; top: 0; z-index: 1000; transition: background-color 0.3s;
-    }
-    body.dark-mode nav { background: #181C20; border-bottom: 1px solid #333; }
+    /* Sections */
+    section { padding:3rem 2rem; max-width:900px; margin:auto; background:#fff; transition:background-color 0.3s, color 0.3s; }
+    body.dark-mode section { background-color:#1f1f1f; }
+    .section-title { font-size:2rem; margin-bottom:1.5rem; text-align:center; font-weight:700; }
+    .card { background:linear-gradient(to bottom,#fff,#f2f8ff); border-radius:24px; box-shadow:0 4px 12px rgba(0,0,0,0.08); padding:2.5rem; margin-bottom:2rem; transition:transform 0.3s, background 0.3s; }
+    body.dark-mode .card { background:#222; box-shadow:0 4px 12px rgba(255,255,255,0.08); }
 
-    nav ul { display: flex; gap: 2rem; list-style: none; }
-    nav a {
-      text-decoration: none; color: #006699; font-weight: 600; font-size: 1rem;
-      transition: 0.3s; padding: 0.2em 0.5em; border-radius: 4px;
-    }
-    body.dark-mode nav a { color: #bbdefb; }
-    nav a:focus, nav a:hover {
-      color: #0099cc; background: #e0f0ff; outline: 2px solid #0099cc; outline-offset: 2px;
-      transform: scale(1.05);
-    }
-    body.dark-mode nav a:hover { color: #90caf9; background: #333; }
+    footer { background:#151515; color:white; text-align:center; padding:1.5rem; margin-top:3rem; font-size:1rem; }
+    body.dark-mode footer { background-color:#000; color:#bbb; }
 
-    /* Buttons / Dropdown styling */
-    #darkModeToggle, #languageSelect {
-      border-radius: 12px;
-      padding: 0.5em 1em;
-      border: 1px solid #ccc;
-      cursor: pointer;
-      transition: all 0.3s;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 600;
-      background-color: #f0f0f0;
-    }
-    #darkModeToggle:hover, #languageSelect:hover { background-color: #e0e0e0; }
-    body.dark-mode #darkModeToggle, body.dark-mode #languageSelect {
-      background-color: #333;
-      color: #e0e0e0;
-      border: 1px solid #555;
-    }
-    body.dark-mode #darkModeToggle:hover, body.dark-mode #languageSelect:hover {
-      background-color: #444;
-    }
-
-    /* Header */
-    header {
-      position: relative;
-      background: url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-    }
-
-    header div {
-      position: relative;
-      padding: 3rem 2rem;
-      text-align: center;
-      background: rgba(0,0,0,0.3);
-      border-radius: 12px;
-      display: inline-block;
-    }
-    header h1 { font-size: 3rem; color: #fff; font-weight: 800; letter-spacing: 1px; }
-    header p { color: #ccc; font-size: 1.2rem; max-width: 600px; margin: 1rem auto 0; }
-
-    section { padding: 3rem 2rem; max-width: 900px; margin: auto; background: #fff; transition: background-color 0.3s; z-index:1; position:relative; }
-    body.dark-mode section { background-color: #1f1f1f; }
-
-    .section-title { font-size: 2rem; margin-bottom: 1.5rem; text-align: center; font-weight: 700; }
-
-    .card {
-      background: linear-gradient(to bottom, #ffffff, #f2f8ff);
-      border-radius: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      padding: 2.5rem; margin-bottom: 2rem; transition: transform 0.3s, background 0.3s;
-    }
-    body.dark-mode .card { background: #222; box-shadow: 0 4px 12px rgba(255,255,255,0.08); }
-    .card:hover { transform: translateY(-5px); }
-
-    footer { background: #151515; color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 1rem; }
-    body.dark-mode footer { background-color: #000; color: #bbb; }
-
-    @media (max-width: 700px) {
-      header div { padding: 2rem 1rem; }
-      nav { flex-direction: column; gap: 1rem; padding: 0.6rem 1rem; }
-      nav ul { gap: 1.2rem; }
-      section { padding: 2rem 0.7rem; }
-      .card { padding: 1.2rem; }
-    }
+    @media (max-width:700px) { header div{padding:2rem 1rem;} nav{flex-direction:column;gap:1rem;padding:0.6rem 1rem;} nav ul{gap:1.2rem;} section{padding:2rem 0.7rem;} .card{padding:1.2rem;} }
   </style>
 </head>
 <body>
@@ -184,28 +110,23 @@
   </footer>
 
   <script>
-    // Dark mode toggle with icon change
+    // Dark mode toggle
     const toggle = document.getElementById("darkModeToggle");
     toggle.addEventListener("click", () => {
       document.body.classList.toggle("dark-mode");
       toggle.innerText = document.body.classList.contains("dark-mode") ? "☀️ Light Mode" : "🌙 Dark Mode";
     });
 
-    // Simple language translator (replace text with i18n dataset)
+    // Language translator
     const translations = {
-      es: {
-        headerTitle: "Centro del Reino de Kian",
-        headerSubtitle: "Acercando el mundo a Yahuwah a través de la música, enseñanza y verdad",
-        musicNav: "Música", faithNav: "Fe & Ministerio", coursesNav: "Enseñanzas", contactNav: "Contacto",
-        musicTitle: "🎵 Música", musicDesc: "Escucha canciones inspiradas por Yahuwah que conmueven el espíritu y liberan la verdad.",
-        faithTitle: "🙏 Fe & Ministerio", faithDesc: "Perspectivas proféticas, sueños, visiones y palabras que glorifican a Yahuwah y fortalecen tu camino.",
-        coursesTitle: "📖 Enseñanzas & Cursos",
-        course1: "Hebreo (Bíblico & Moderno)", course2: "Identidad del Reino", course3: "Aprendizaje de Idiomas", course4: "Habilidades de Vida",
-        contactTitle: "📬 Contáctame", contactDesc: "Envía un mensaje desde tu corazón. Yahuwah escucha. 💙"
-      },
-      // Add more languages here...
+      es:{ headerTitle:"Centro del Reino de Kian", headerSubtitle:"Acercando el mundo a Yahuwah a través de la música, enseñanza y verdad",
+        musicNav:"Música", faithNav:"Fe & Ministerio", coursesNav:"Enseñanzas", contactNav:"Contacto",
+        musicTitle:"🎵 Música", musicDesc:"Escucha canciones inspiradas por Yahuwah que conmueven el espíritu y liberan la verdad.",
+        faithTitle:"🙏 Fe & Ministerio", faithDesc:"Perspectivas proféticas, sueños, visiones y palabras que glorifican a Yahuwah y fortalecen tu camino.",
+        coursesTitle:"📖 Enseñanzas & Cursos", course1:"Hebreo (Bíblico & Moderno)", course2:"Identidad del Reino", course3:"Aprendizaje de Idiomas", course4:"Habilidades de Vida",
+        contactTitle:"📬 Contáctame", contactDesc:"Envía un mensaje desde tu corazón. Yahuwah escucha. 💙"
+      }
     };
-
     const select = document.getElementById("languageSelect");
     select.addEventListener("change", () => {
       const lang = select.value;
@@ -216,6 +137,13 @@
         });
       }
     });
+
+    // Register service worker
+    if('serviceWorker' in navigator){
+      navigator.serviceWorker.register('/sw.js')
+        .then(()=>console.log('Service Worker registered!'))
+        .catch(err=>console.log('Service Worker failed:',err));
+    }
   </script>
 </body>
 </html>
