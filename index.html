@@ -15,13 +15,27 @@
       transition: background-color 0.3s, color 0.3s;
       min-height: 100vh;
       line-height: 1.6;
+      position: relative;
+      z-index: 0;
     }
 
-    /* Dark mode styling */
-    body.dark-mode {
-      background-color: #121212;
-      color: #e0e0e0;
+    /* Full page dark overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0); /* no dark by default */
+      pointer-events: none;
+      z-index: 999; /* above content */
+      transition: background-color 0.3s;
     }
+
+    body.dark-mode::before {
+      background-color: rgba(0,0,0,0.65); /* dark overlay */
+    }
+
+    body.dark-mode { color: #e0e0e0; }
 
     nav { 
       display: flex; justify-content: space-between; align-items: center; 
@@ -68,23 +82,20 @@
     header {
       position: relative;
       background: url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      transition: filter 0.3s;
     }
-    /* Keep header image bright in dark mode */
-    body.dark-mode header { filter: brightness(100%); }
 
     header div {
       position: relative;
       padding: 3rem 2rem;
       text-align: center;
-      background: rgba(0,0,0,0.3); /* subtle overlay for readability */
+      background: rgba(0,0,0,0.3);
       border-radius: 12px;
       display: inline-block;
     }
     header h1 { font-size: 3rem; color: #fff; font-weight: 800; letter-spacing: 1px; }
     header p { color: #ccc; font-size: 1.2rem; max-width: 600px; margin: 1rem auto 0; }
 
-    section { padding: 3rem 2rem; max-width: 900px; margin: auto; background: #fff; transition: background-color 0.3s; }
+    section { padding: 3rem 2rem; max-width: 900px; margin: auto; background: #fff; transition: background-color 0.3s; z-index:1; position:relative; }
     body.dark-mode section { background-color: #1f1f1f; }
 
     .section-title { font-size: 2rem; margin-bottom: 1.5rem; text-align: center; font-weight: 700; }
@@ -163,8 +174,8 @@
   <section id="contact">
     <h2 class="section-title" data-i18n="contactTitle">📬 Contact Me</h2>
     <div class="card">
-      <p data-i18n="contactEmail">Email: <a href="mailto:KianCharles@gmail.com">KianCharles@gmail.com</a></p>
-      <p data-i18n="contactMsg">Or reach out with a message from the heart. Yahuwah is listening. 💙</p>
+      <p>Email: <a href="mailto:KianCharles@gmail.com">KianCharles@gmail.com</a></p>
+      <p data-i18n="contactDesc">Or reach out with a message from the heart. Yahuwah is listening. 💙</p>
     </div>
   </section>
 
@@ -173,128 +184,37 @@
   </footer>
 
   <script>
-    // Dark mode toggle
+    // Dark mode toggle with icon change
     const toggle = document.getElementById("darkModeToggle");
     toggle.addEventListener("click", () => {
       document.body.classList.toggle("dark-mode");
+      toggle.innerText = document.body.classList.contains("dark-mode") ? "☀️ Light Mode" : "🌙 Dark Mode";
     });
 
-    // Translations
+    // Simple language translator (replace text with i18n dataset)
     const translations = {
-      en: {
-        headerTitle: "Kian's Kingdom Hub",
-        headerSubtitle: "Bringing the world closer to Yahuwah through music, teaching, and truth",
-        musicNav: "Music",
-        faithNav: "Faith & Ministry",
-        coursesNav: "Teachings",
-        contactNav: "Contact",
-        musicTitle: "🎵 Music",
-        musicDesc: "Listen to Yahuwah-inspired songs that stir the spirit and release truth.",
-        faithTitle: "🙏 Faith & Ministry",
-        faithDesc: "Prophetic insights, dreams, visions, and words that glorify Yahuwah and strengthen your walk.",
-        coursesTitle: "📖 Teachings & Courses",
-        course1: "Hebrew (Biblical & Modern)",
-        course2: "Kingdom Identity",
-        course3: "Language Learning",
-        course4: "Life Skills",
-        contactTitle: "📬 Contact Me",
-        contactEmail: "Email: KianCharles@gmail.com",
-        contactMsg: "Or reach out with a message from the heart. Yahuwah is listening. 💙"
-      },
       es: {
         headerTitle: "Centro del Reino de Kian",
-        headerSubtitle: "Acercando el mundo a Yahuwah mediante música, enseñanza y verdad",
-        musicNav: "Música",
-        faithNav: "Fe y Ministerio",
-        coursesNav: "Enseñanzas",
-        contactNav: "Contacto",
-        musicTitle: "🎵 Música",
-        musicDesc: "Escucha canciones inspiradas por Yahuwah que conmueven el espíritu y liberan la verdad.",
-        faithTitle: "🙏 Fe y Ministerio",
-        faithDesc: "Perspectivas proféticas, sueños, visiones y palabras que glorifican a Yahuwah y fortalecen tu camino.",
-        coursesTitle: "📖 Enseñanzas y Cursos",
-        course1: "Hebreo (Bíblico y Moderno)",
-        course2: "Identidad del Reino",
-        course3: "Aprendizaje de Idiomas",
-        course4: "Habilidades para la Vida",
-        contactTitle: "📬 Contáctame",
-        contactEmail: "Correo: KianCharles@gmail.com",
-        contactMsg: "O envía un mensaje desde el corazón. Yahuwah está escuchando. 💙"
+        headerSubtitle: "Acercando el mundo a Yahuwah a través de la música, enseñanza y verdad",
+        musicNav: "Música", faithNav: "Fe & Ministerio", coursesNav: "Enseñanzas", contactNav: "Contacto",
+        musicTitle: "🎵 Música", musicDesc: "Escucha canciones inspiradas por Yahuwah que conmueven el espíritu y liberan la verdad.",
+        faithTitle: "🙏 Fe & Ministerio", faithDesc: "Perspectivas proféticas, sueños, visiones y palabras que glorifican a Yahuwah y fortalecen tu camino.",
+        coursesTitle: "📖 Enseñanzas & Cursos",
+        course1: "Hebreo (Bíblico & Moderno)", course2: "Identidad del Reino", course3: "Aprendizaje de Idiomas", course4: "Habilidades de Vida",
+        contactTitle: "📬 Contáctame", contactDesc: "Envía un mensaje desde tu corazón. Yahuwah escucha. 💙"
       },
-      fr: {
-        headerTitle: "Hub du Royaume de Kian",
-        headerSubtitle: "Approcher le monde de Yahuwah grâce à la musique, l'enseignement et la vérité",
-        musicNav: "Musique",
-        faithNav: "Foi & Ministère",
-        coursesNav: "Enseignements",
-        contactNav: "Contact",
-        musicTitle: "🎵 Musique",
-        musicDesc: "Écoutez des chansons inspirées par Yahuwah qui éveillent l'esprit et libèrent la vérité.",
-        faithTitle: "🙏 Foi & Ministère",
-        faithDesc: "Aperçus prophétiques, rêves, visions et paroles qui glorifient Yahuwah et renforcent votre marche.",
-        coursesTitle: "📖 Enseignements & Cours",
-        course1: "Hébreu (Biblique & Moderne)",
-        course2: "Identité du Royaume",
-        course3: "Apprentissage des Langues",
-        course4: "Compétences de Vie",
-        contactTitle: "📬 Contactez-moi",
-        contactEmail: "Email: KianCharles@gmail.com",
-        contactMsg: "Ou envoyez un message du cœur. Yahuwah écoute. 💙"
-      },
-      de: {
-        headerTitle: "Kians Königreich Hub",
-        headerSubtitle: "Die Welt näher zu Yahuwah bringen durch Musik, Lehre und Wahrheit",
-        musicNav: "Musik",
-        faithNav: "Glaube & Dienst",
-        coursesNav: "Lehren",
-        contactNav: "Kontakt",
-        musicTitle: "🎵 Musik",
-        musicDesc: "Höre Yahuwah-inspirierte Lieder, die den Geist bewegen und Wahrheit freisetzen.",
-        faithTitle: "🙏 Glaube & Dienst",
-        faithDesc: "Prophetische Einsichten, Träume, Visionen und Worte, die Yahuwah verherrlichen und deinen Weg stärken.",
-        coursesTitle: "📖 Lehren & Kurse",
-        course1: "Hebräisch (Biblisch & Modern)",
-        course2: "Königreich-Identität",
-        course3: "Sprachlernen",
-        course4: "Lebenskompetenzen",
-        contactTitle: "📬 Kontaktiere mich",
-        contactEmail: "Email: KianCharles@gmail.com",
-        contactMsg: "Oder sende eine Nachricht von Herzen. Yahuwah hört. 💙"
-      },
-      he: {
-        headerTitle: "מרכז ממלכת קיאן",
-        headerSubtitle: "להקרב את העולם ליהוה דרך מוסיקה, לימוד ואמת",
-        musicNav: "מוסיקה",
-        faithNav: "אמונה ושירות",
-        coursesNav: "לימודים",
-        contactNav: "צור קשר",
-        musicTitle: "🎵 מוסיקה",
-        musicDesc: "הקשיבו לשירים בהשראת יהוה שמעוררים את הרוח ומשחררים אמת.",
-        faithTitle: "🙏 אמונה ושירות",
-        faithDesc: "תובנות נבואיות, חלומות, חזיונות ודברים שמפארים את יהוה ומחזקים את ההליכה שלך.",
-        coursesTitle: "📖 לימודים וקורסים",
-        course1: "עברית (מקראית ומודרנית)",
-        course2: "זהות ממלכתית",
-        course3: "למידת שפות",
-        course4: "כישורי חיים",
-        contactTitle: "📬 צור קשר",
-        contactEmail: "דואר: KianCharles@gmail.com",
-        contactMsg: "או שלח הודעה מהלב. יהוה מקשיב. 💙"
-      }
+      // Add more languages here...
     };
 
-    // Translate page
-    const languageSelect = document.getElementById("languageSelect");
-    function translatePage(lang) {
-      document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        if (translations[lang] && translations[lang][key]) {
-          el.innerText = translations[lang][key];
-        }
-      });
-    }
-    languageSelect.addEventListener("change", () => {
-      translatePage(languageSelect.value);
+    const select = document.getElementById("languageSelect");
+    select.addEventListener("change", () => {
+      const lang = select.value;
+      if(translations[lang]){
+        document.querySelectorAll("[data-i18n]").forEach(el=>{
+          const key = el.getAttribute("data-i18n");
+          el.innerText = translations[lang][key] || el.innerText;
+        });
+      }
     });
   </script>
 </body>
