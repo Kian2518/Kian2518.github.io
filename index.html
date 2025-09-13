@@ -11,14 +11,14 @@
 
 /* Body dark mode */
 body { background:linear-gradient(to bottom,#eaf6ff,#ffffff); color:#333; transition:background-color 0.3s,color 0.3s; min-height:100vh; line-height:1.6; }
-body.dark-mode { background-color:#121212; color:#e0e0e0; }
+body.dark-mode { background-color:#000; color:#e0e0e0; }
 
 /* Header */
 header {
   background: url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
   min-height: 60vh;
   display:flex; align-items:center; justify-content:center;
-  filter: brightness(1.05); /* header image slightly bright */
+  filter: brightness(1.05); /* keeps header image bright */
   position: relative;
 }
 header div {
@@ -29,7 +29,7 @@ header div {
   display:inline-block;
   transition: background 0.3s;
 }
-header div h1, header div p { color:#000 !important; } /* darkest black for text */
+header div h1, header div p { color:#000 !important; }
 
 /* Nav */
 nav { display:flex; justify-content:space-between; align-items:center; gap:1rem; background:#fff; padding:1rem 2rem; border-bottom:1px solid #ddd; box-shadow:0 4px 8px rgba(0,0,0,0.03); position:sticky; top:0; z-index:1000; transition:background-color 0.3s; }
@@ -48,10 +48,10 @@ body.dark-mode #darkModeToggle:hover, body.dark-mode #languageSelect:hover { bac
 
 /* Sections & cards */
 section { padding:3rem 2rem; max-width:900px; margin:auto; background:#fff; transition:background-color 0.3s,color 0.3s; }
-body.dark-mode section { background-color:#1f1f1f; }
+body.dark-mode section,
+body.dark-mode .card { background-color:#000; color:#e0e0e0; }
 .section-title { font-size:2rem; margin-bottom:1.5rem; text-align:center; font-weight:700; }
 .card { background:linear-gradient(to bottom,#fff,#f2f8ff); border-radius:24px; box-shadow:0 4px 12px rgba(0,0,0,0.08); padding:2.5rem; margin-bottom:2rem; transition:transform 0.3s, background 0.3s; }
-body.dark-mode .card { background:#222; box-shadow:0 4px 12px rgba(255,255,255,0.08); }
 
 /* Footer */
 footer { background:#151515; color:white; text-align:center; padding:1.5rem; margin-top:3rem; font-size:1rem; }
