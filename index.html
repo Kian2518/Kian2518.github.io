@@ -18,7 +18,7 @@ header {
   background: url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
   min-height: 60vh;
   display:flex; align-items:center; justify-content:center;
-  filter: brightness(1.05);
+  filter: brightness(1.05); /* header image slightly bright */
   position: relative;
 }
 header div {
@@ -29,7 +29,7 @@ header div {
   display:inline-block;
   transition: background 0.3s;
 }
-body.dark-mode header div { background: rgba(0,0,0,0.3); }
+header div h1, header div p { color:#000 !important; } /* darkest black for text */
 
 /* Nav */
 nav { display:flex; justify-content:space-between; align-items:center; gap:1rem; background:#fff; padding:1rem 2rem; border-bottom:1px solid #ddd; box-shadow:0 4px 8px rgba(0,0,0,0.03); position:sticky; top:0; z-index:1000; transition:background-color 0.3s; }
